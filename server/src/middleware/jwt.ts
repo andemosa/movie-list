@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { configDotenv } from "dotenv";
+import dotenv from "dotenv";
 
 import createError from "../utils/createError";
 import logger from "../utils/logger";
 
-configDotenv();
+dotenv.config();
 
 interface JwtPayload {
   id: string;

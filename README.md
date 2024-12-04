@@ -12,6 +12,7 @@ The project also includes a Swagger documentation.
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
   - [Links](#links)
+  - [Video Demo](#video-demo)
 - [My process](#my-process)
   - [Built with](#built-with)
 - [Setting Up](#setup)
@@ -26,25 +27,36 @@ The task is to seamlessly integrate the provided [figma design](https://www.figm
 
 This Movie List Application should be web and mobile responsive
 
+
 ### Screenshot
 
-![Desktop view - List of todos for a day](./screenshots/list.png)
+![Desktop view - Login page](./screenshots/login.png)
+
+### Screenshot
+
+![Desktop view - Empty](./screenshots/empty.png)
+
+### Screenshot
+
+![Desktop view - List of movies](./screenshots/grid.png)
 
 ###
 
-![Desktop view - Show todo info](./screenshots/show.png)
+![Desktop view - List of movies](./screenshots/pagination.png)
 
 ###
 
-![Desktop view - Update user info](./screenshots/update.png)
+![Desktop view - Movie](./screenshots/single.png)
 
-###
-
-![Mobile view](./screenshots/mobile.jpg)
 
 ### Links
 
-- Live Site URL: ()
+- Live Site URL: (https://movie-list-andemosa.vercel.app)
+- Live Site URL: (https://movie-list-l1f3.onrender.com)
+
+### Video Demo
+
+- Video link : ()
 
 ## My process
 
