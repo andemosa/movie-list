@@ -63,7 +63,7 @@ const getMovies = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { page = 1, limit = 10 } = req.query;
+  const { page = 1, limit = 8 } = req.query;
 
   const filters = {
     user: res.locals.userId,

@@ -56,7 +56,11 @@ This Movie List Application should be web and mobile responsive
 
 ### Video Demo
 
-- Video link : ()
+- Frontend Demo - (https://www.loom.com/share/95987ecda84940419461205a40daf3c6?sid=a1c9e124-7100-4a34-8d70-0396cbf078c3)
+
+- Backend Demo - (https://www.loom.com/share/de38d67ec5af4386bceb0c7ff9efc5b0?sid=bfa0d6ba-9933-49f9-af7c-d00301fe111d)
+
+- Deployment Environment - (https://www.loom.com/share/4e041376f10248baa68e37569a2b0add?sid=89a4327e-b15e-4177-85bc-76f6e77a0590)
 
 ## My process
 

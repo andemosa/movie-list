@@ -130,6 +130,12 @@ const LoginPage = () => {
             Sign up
           </Link>
         </p>
+
+        <div className="space-y-2 text-center mt-6">
+          <h3 className="font-semibold text-lg">Test User</h3>
+          <p>Email: test@abc.com</p>
+          <p>Password: Pass1234</p>
+        </div>
       </div>
     </div>
   );
