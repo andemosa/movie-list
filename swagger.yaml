@@ -1,0 +1,335 @@
+openapi: 3.0.0
+info:
+  title: Node.js Rest API  - OpenAPI 3.0
+  version: 1.0.0
+  description: Movie List Application
+  contact:
+    name: Anderson Osayerie
+    email: osayerieanderson@gmail.com
+    url: https://andemosa.tech/
+paths:
+  /api/auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register a user
+      description: This endpoint is used when creating a user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterSchema"
+      responses:
+        "201":
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegisterResponse"
+        "400":
+          description: Bad request
+        "409":
+          description: Conflict
+  /api/auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login a user
+      description: This endpoint is used to login a user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginSchema"
+      responses:
+        "200":
+          description: User logged in
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        "401":
+          description: Unauthorized
+  /api/movies:
+    post:
+      tags:
+        - Movie
+      summary: Create a movie
+      description: This endpoint is used when a user wants to create a movie.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMovieSchema"
+      responses:
+        "201":
+          description: Movie created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateMovieResponse"
+        "400":
+          description: Bad request
+        "409":
+          description: Conflict
+    get:
+      tags:
+        - Movie
+      summary: Return a list of movies
+      description:
+        This endpoint is used to return a list of movies. It accepts query
+        filters.
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: number
+            default: 10
+          description: The number of movies shown per page
+        - in: query
+          name: page
+          schema:
+            type: number
+            default: 1
+          description: The current page
+      responses:
+        "200":
+          description: Returns a list of movies for the user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetMoviesResponse"
+        "400":
+          description: Bad request
+        "409":
+          description: Conflict
+  "/api/movies/{movieId}":
+    patch:
+      tags:
+        - Movie
+      summary: Update a movie
+      description: This endpoint is used when a user wants to update a movie.
+      parameters:
+        - name: movieId
+          in: path
+          description: The id of the movie
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMovieSchema"
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateMovieResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Movie not found
+    delete:
+      tags:
+        - Movie
+      summary: Delete a movie
+      description: This endpoint is used when a user wants to delete a movie.
+      parameters:
+        - name: movieId
+          in: path
+          description: The id of the movie
+          required: true
+      responses:
+        "201":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteMovieResponse"
+        "403":
+          description: Forbidden
+        "404":
+          description: Movie not found
+
+components:
+  schemas:
+    CreateMovieSchema:
+      type: object
+      required:
+        - title
+        - publishedYear
+        - poster
+      properties:
+        title:
+          type: string
+          default: Moana 2
+        publishedYear:
+          type: string
+          default: 2024
+        poster:
+          type: string
+          description: Movie poster URL
+          default: http://res.cloudinary.com/dantown-test-fe/image/upload/v1733291396/to-do/onsfu2rfogztc0z1iltb.jpg
+    CreateMovieResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        title:
+          type: string
+        publishedYear:
+          type: string
+        poster:
+          type: string
+        user:
+          type: string
+    GetMoviesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        page:
+          type: string
+        limit:
+          type: string
+        totalMovies:
+          type: string
+        totalPages:
+          type: string
+        movies:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+              title:
+                type: string
+              publishedYear:
+                type: string
+              poster:
+                type: string
+              user:
+                type: string
+    UpdateMovieResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        movie:
+          type: object
+          properties:
+            _id:
+              type: string
+            createdAt:
+              type: string
+            updatedAt:
+              type: string
+            title:
+              type: string
+            publishedYear:
+              type: string
+            poster:
+              type: string
+            user:
+              type: string
+    DeleteMovieResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+          default: movie has been deleted!
+    RegisterSchema:
+      type: object
+      additionalProperties: false
+      required:
+        - email
+        - name
+        - password
+      properties:
+        email:
+          type: string
+          default: jane.doe@example.com
+        name:
+          type: string
+          default: Jane Doe
+        password:
+          type: string
+          default: stringPassword123
+    RegisterResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        success:
+          type: boolean
+        user:
+          type: object
+          properties:
+            email:
+              type: string
+            name:
+              type: string
+            _id:
+              type: string
+            createdAt:
+              type: string
+            updatedAt:
+              type: string
+            token:
+              type: string
+    LoginSchema:
+      type: object
+      required:
+        - email
+        - password
+      additionalProperties: false
+      properties:
+        email:
+          type: string
+          default: jane.doe@example.com
+        password:
+          type: string
+          default: stringPassword123
+    LoginResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        user:
+          type: object
+          properties:
+            email:
+              type: string
+            name:
+              type: string
+            _id:
+              type: string
+            createdAt:
+              type: string
+            updatedAt:
+              type: string
+            token:
+              type: string
+
+tags:
+  - name: Auth
+    description: The Auth API provides endpoints for registering and logging in a user.
+  - name: Movie
+    description: The Movie API provides endpoints for managing movies, including
+      creating, updating, retrieving, and deleting user's movies.
