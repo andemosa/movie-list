@@ -52,7 +52,7 @@ This Movie List Application should be web and mobile responsive
 ### Links
 
 - Live Site URL: (https://movie-list-andemosa.vercel.app)
-- Live Site URL: (https://movie-list-l1f3.onrender.com)
+- Live API URL: (https://movie-list-l1f3.onrender.com)
 
 ### Video Demo
 
@@ -87,7 +87,7 @@ Start by cloning the repository to your local machine:
 
 ```bash
 git clone https://github.com/andemosa/movie-list.git
-cd cytric
+cd movie-list
 ```
 
 ### Backend Configuration
