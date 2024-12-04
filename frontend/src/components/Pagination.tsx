@@ -44,53 +44,45 @@ const Pagination = ({
   };
 
   return (
-    <div className="flex justify-center items-center gap-4 mt-10 md:mt-14 lg:mt-16 font-bold text-white">
-      <div className="flex flex-1 justify-between sm:hidden">
-        <button className="px-4 py-2 rounded-md">Prev</button>
-        <button className="px-4 py-2 rounded-md">Next</button>
-      </div>
-      <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-center">
-        <div>
-          <nav
-            aria-label="Pagination"
-            className="isolate inline-flex -space-x-px rounded-md shadow-sm"
+    <div className="flex justify-center items-center gap-4 mt-10 md:mt-14 lg:mt-16 font-bold text-white overflow-hidden">
+      <div className="flex items-center sm:justify-center overflow-x-scroll">
+        <nav
+          aria-label="Pagination"
+          className="flex"
+        >
+          <button
+            className="px-4 py-2 rounded-md"
+            onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           >
-            <button
-              className="px-4 py-2 rounded-md"
-              onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-            >
-              Prev
-            </button>
-            {getPageNumbers().map((page, index) => {
-              const isActive = currentPage === page;
+            Prev
+          </button>
+          {getPageNumbers().map((page, index) => {
+            const isActive = currentPage === page;
 
-              return (
-                <p
-                  key={index}
-                  aria-current="page"
-                  className={`px-4 py-2 rounded-md ${
-                    isActive ? "bg-cytric-600" : ""
-                  }`}
-                >
-                  {page === "..." ? (
-                    <>...</>
-                  ) : (
-                    <span onClick={() => onPageChange(page)}>{page}</span>
-                  )}
-                </p>
-              );
-            })}
+            return (
+              <p
+                key={index}
+                aria-current="page"
+                className={`px-4 py-2 rounded-md ${
+                  isActive ? "bg-cytric-600" : ""
+                }`}
+              >
+                {page === "..." ? (
+                  <>...</>
+                ) : (
+                  <span onClick={() => onPageChange(page)}>{page}</span>
+                )}
+              </p>
+            );
+          })}
 
-            <button
-              className="px-4 py-2 rounded-md"
-              onClick={() =>
-                onPageChange(Math.min(totalPages, currentPage + 1))
-              }
-            >
-              Next
-            </button>
-          </nav>
-        </div>
+          <button
+            className="px-4 py-2 rounded-md"
+            onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+          >
+            Next
+          </button>
+        </nav>
       </div>
     </div>
   );
